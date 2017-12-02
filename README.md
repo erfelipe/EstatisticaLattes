@@ -2,7 +2,7 @@
 
 Considerações iniciais
 
-<img src="EstatisticaLattes/img/lattes.jpg" alt="Lattes Público?">
+<img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/lattes.jpg" alt="Lattes Público?">
 
 Embora 
 
