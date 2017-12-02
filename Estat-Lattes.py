@@ -6,6 +6,7 @@ import csv
 import pygal
 import lxml
 import pygal_maps_world
+import unidecode
 
 # lista de países para permitir a exibicao por extenso nos graficos
 paises_3digitos = {}
@@ -76,7 +77,7 @@ paises_3digitos["ERI"] = "Eritreia"
 paises_3digitos["SVK"] = "Eslováquia"
 paises_3digitos["SVN"] = "Eslovênia"
 paises_3digitos["ESP"] = "Espanha"
-paises_3digitos["USA"] = "Estados Unidos da América"
+paises_3digitos["USA"] = "Estados Unidos"
 paises_3digitos["EST"] = "Estônia"
 paises_3digitos["ETH"] = "Etiópia"
 paises_3digitos["FJI"] = "Fiji"
@@ -260,7 +261,33 @@ paises_3digitos["VEN"] = "Venezuela"
 paises_3digitos["VNM"] = "Vietnã"
 paises_3digitos["ZMB"] = "Zâmbia"
 paises_3digitos["ZWE"] = "Zimbabué"
-paises_3digitos[""] = ""
+
+# funcoes uteis para leitura os arquivos CSV
+def importa_csv_para_lista(arq):
+    print("Importando o arquivo: " + arq + " para estrutura de dados em memória a fim de permitir análise.")
+    with open(arq, 'r', encoding='latin-1') as f:
+        reader = csv.reader(f, delimiter=';')
+        lista = list(reader)
+    print("Concluído.")
+    return lista
+
+def importa_csv_para_dicionario(arq):
+    print("Importando o arquivo: " + arq + " para estrutura de dados em memória a fim de permitir análise.")
+    dicionario = {}
+    reader = csv.reader(open(arq, 'r', encoding='latin-1'))
+    for row in reader:
+        aux_linha = row[0]
+        aux_linha_str = aux_linha.split(";")
+        chave = aux_linha_str[0]
+        valor = aux_linha_str[1]
+        dicionario[chave] = valor
+    print("Concluído.")
+    return dicionario
+
+# https://stackoverflow.com/questions/517923/what-is-the-best-way-to-remove-accents-in-a-python-unicode-string/517974#517974
+def remover_acentos(texto):
+    unaccented_string = unidecode.unidecode(texto)
+    return unaccented_string
 
 # lista para receber o arquivo numero_identificador_lattes_zzzz.csv
 identificador_list_cvs = list()
@@ -288,27 +315,6 @@ print("Descompactando o arquivo ZIP... ")
 with zipfile.ZipFile(arquivo_lattes, "r") as zip_ref:
     zip_ref.extractall(dir_destino)
 print("Arquivos da plataforma lattes extraídos em: " + dir_destino)
-
-def importa_csv_para_lista(arq):
-    print("Importando o arquivo: " + arq + " para estrutura de dados em memória a fim de permitir análise.")
-    with open(arq, 'r', encoding='latin-1') as f:
-        reader = csv.reader(f, delimiter=';')
-        lista = list(reader)
-    print("Concluído.")
-    return lista
-
-def importa_csv_para_dicionario(arq):
-    print("Importando o arquivo: " + arq + " para estrutura de dados em memória a fim de permitir análise.")
-    dicionario = {}
-    reader = csv.reader(open(arq, 'r', encoding='latin-1'))
-    for row in reader:
-        aux_linha = row[0]
-        aux_linha_str = aux_linha.split(";")
-        chave = aux_linha_str[0]
-        valor = aux_linha_str[1]
-        dicionario[chave] = valor
-    print("Concluído.")
-    return dicionario
 
 for file in os.listdir(dir_destino):
     if file.endswith(".csv"):
@@ -371,27 +377,26 @@ while i < len(identificador_list_cvs):
     i = i + 1
 
 
-########################
-# apenas para conferencia. tirar depois
-#print(nacionalidade_dict.items())
-#print(area_conhecimento_dict.items())
-#print(nivel_formacao_dict.items())
-########################
-
-
-# tratar os dicionarios para estruturas de listas
+# migrar os dicionarios para estruturas de listas
 # a fim de permitir ordenacao e gerar graficos para melhor leitura
 nacionalidade_list = list()
+print( "Ordenando a lista de nacionalidade..." )
 nacionalidade_list = sorted(nacionalidade_dict.items(), key = lambda x: x[1], reverse=True )
 
 area_list = list()
+print ( "Ordenando a lista de área de atuação..." )
 area_list = sorted(area_conhecimento_dict.items(), key = lambda x: x[1], reverse=True)
 
 nivel_formacao_list = list()
+print( "Ordenando a lista de nível de formação..." )
 nivel_formacao_list = sorted(nivel_formacao_dict.items(), key = lambda x: x[1], reverse=True)
 
 # ######################################################
 # GRAFICOS
+# ######################################################
+
+print( "Gerando os gráficos estatísticos" )
+
 # gerar o grafico de barras de pesquisadores estrageiros
 nacionalidade_chart = pygal.HorizontalBar()
 nacionalidade_chart.title = 'Pesquisadores estrangeiros cadastrados na Plataforma Lattes'
@@ -400,33 +405,23 @@ while i < len(nacionalidade_list):
     aux_linha = nacionalidade_list[i]
     aux_nacionalidade = aux_linha[0]
     aux_nacionalidade_extenso = paises_3digitos.get(aux_nacionalidade)
+
     if (aux_nacionalidade_extenso is None):
-       aux_nacionalidade_extenso = aux_nacionalidade
+       aux_nacionalidade_extenso =  aux_nacionalidade
+    else:
+        aux_nacionalidade_extenso = remover_acentos( aux_nacionalidade_extenso )
+
     valor_nacionalidade = aux_linha[1]
     if aux_nacionalidade != "BRA":
         nacionalidade_chart.add(aux_nacionalidade_extenso, valor_nacionalidade)
+    else:
+        print( "Número de pesquisadores Brasileiros cadastrados: " + valor_nacionalidade )
     i = i + 1
 nacionalidade_chart.render_in_browser()
 
-# gerar o grafico/mapa de pesquisadores por paises (incluindo Brasil desta vez)
-worldmap_chart = pygal.maps.world.World()
-worldmap_chart.title = 'Pesquisadores cadastrados na plataforma Lattes - por países.'
-worldmap_chart.add('Mês/Ano', {
-  'af': 14,
-  'bd': 1,
-  'by': 3,
-  'cn': 1000,
-  'gm': 9,
-  'in': 1,
-  'ir': 314,
-  'iq': 129,
-  'jp': 7
-})
-worldmap_chart.render_in_browser()
-
 # gerar o grafico de area de atuaçao
 area_chart = pygal.HorizontalBar()
-area_chart.title = "Área de atuação dos pesquisadores"
+area_chart.title = "Area de atuacao dos pesquisadores"
 i = 0
 while i < len(area_list):
     aux_linha = area_list[i]
@@ -434,36 +429,35 @@ while i < len(area_list):
     aux_area_extenso = area_dict_csv.get(aux_area)
     valor_area = aux_linha[1]
     if bool(aux_area_extenso and aux_area_extenso.strip()):
+        aux_area_extenso = remover_acentos( aux_area_extenso )
         area_chart.add(aux_area_extenso, valor_area)
     i = i + 1
 area_chart.render_in_browser()
 
 # gerar o grafico de nivel de formacao
 nivel_formacao_chart = pygal.HorizontalBar()
-nivel_formacao_chart.title = "Nível de formação dos pesquisadores"
+nivel_formacao_chart.title =  "Nivel de formacao dos pesquisadores"
 i = 0
 while i < len(nivel_formacao_list):
     aux_linha = nivel_formacao_list[i]
     aux_nivel = aux_linha[0]
     if (bool(aux_nivel and aux_nivel.strip())):
         aux_nivel_extenso = nivel_formacao_dict_csv.get(aux_nivel)
+        aux_nivel_extenso = remover_acentos( aux_nivel_extenso )
     else:
-        aux_nivel_extenso = "Não informado"
+        aux_nivel_extenso = "Nao informado"
     valor_nivel = aux_linha[1]
     nivel_formacao_chart.add(aux_nivel_extenso, valor_nivel)
     i = i + 1
 nivel_formacao_chart.render_in_browser()
 
-
-
-
 # excluir os arquivos de download no final do processo
-print("Excluindo o arquivo: " + arquivo_lattes + " após a descompactação.")
-#os.remove(file_name)
+print("Excluindo o arquivo: " + arquivo_lattes )
+os.remove(arquivo_lattes)
 print("Excluindo o arquivo: " + identificador_arq)
-#os.remove(arquivo_identificador)
+os.remove(identificador_arq)
 print("Excluindo o arquivo: " + area_arq)
-#os.remove(arquivo_area)
+os.remove(area_arq)
 print("Excluindo o arquivo: " + nivel_arq)
-#os.remove(arquivo_nivel)
+os.remove(nivel_arq)
 
