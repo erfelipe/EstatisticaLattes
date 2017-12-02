@@ -10,7 +10,8 @@ Aluno: Eduardo R Felipe - UFMG [<a href="http://lattes.cnpq.br/1010588591399870"
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/lattes.jpg" alt="Lattes Público?">
 Embora o currículo lattes seja divulgado como uma base de dados pública, o acesso aos dados é protegido contra acessos de algoritmos de pesquisa e varredura de dados automatizadas, o que impede que mecanismos de busca seja utilizados para um levantamento estatístico especializado. 
 
-O cnpq lattes divulga em sua página: <a href="http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados" target="_blank">http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados</a> que há uma possibilidade de acesso à base para extração por meio de uma ferramenta específica chamada Lattes Extrator. Mediante o envio de um cadastro com diversas informações da instituição de ensino e da assinatura de seu diretor, inicia-se um processo de liberação da ferramenta. Infelizmente neste projeto não foi possível aguardar a liberação do mesmo. Neste momento há mais de 30 dias de aguardo da liberação da ferramenta e não há nenhuma resposta ou previsão para o acesso.
+
+O CNPQ - Lattes divulga em sua página: <a href="http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados" target="_blank">http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados</a> que há uma possibilidade de acesso à base para extração por meio de uma ferramenta específica chamada Lattes Extrator. Mediante o envio de um cadastro com diversas informações da instituição de ensino e da assinatura de seu diretor, inicia-se um processo de liberação da ferramenta. Infelizmente neste projeto não foi possível aguardar a liberação do mesmo. Neste momento há mais de 30 dias de aguardo da liberação da ferramenta e não há nenhuma resposta ou previsão para o acesso.
 
 Desta forma o projeto foi alterado a fim de utilizar alguns dados publicados em formato CSV no site da plataforma, contendo basicamente os IDs dos currículos, suas áreas de atuação e formação profissional dos participantes na plataforma.
 
@@ -58,16 +59,12 @@ NUMERO_IDENTIFICADOR;PAIS_NACIONALIDADE_ISO3;DATA_ATUALIZACAO;COD_AREA_CONHEC;CO
 tab_area_conhecimento_zzzzzzzz.cvs - neste arquivo há a tradução do código da área de conhecimento para três idiomas: Português, inglês e espanhol.
 COD_AREA_CONHEC;NOME_AREA_CONHEC;NOME_AREA_CONHEC_EN;NOME_AREA_CONHEC_ES
 60500000;Planejamento Urbano e Regional;Urban and Regional Planning;Planeamiento Urbano y Regional
-
 10100008;Matemática;Mathematics;Matemática
 
 tab_nivel_formacao_zzzzzzzz.csv - este arquivo apresenta a tradução do código do nível de formação para três idiomas: Português, inglês e espanhol. 
 COD_NIVEL_FORM;DSC_NIVEL_FORM;DSC_NIVEL_FORM_EN;DSC_NIVEL_FORM_ES
-
 Y;Outros;Others;Otro
-
 3;Mestrado;Master's;Maestria
-
 4;Doutorado;Doctorate;Doctorado
 
 O processamento ocorre no algoritmo em Python, considerando o arquivo numero_identificador_lattes como referência principal para a contagem estatística. Na medida que este arquivo possui todos os identificadores de currículos cadastrados, a contagem e agrupamento de dados é feito por meio de um laço de repetição na estrutura de dados referente a este arquivo.
@@ -84,7 +81,7 @@ Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href
 
 Foi criado um gráfico: "pesquisadores estrangeiros", excetuando a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados, a contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
 
-4. Os arquivos da plataforma Lattes trazidos, são excluídos.
+4. Os arquivos da plataforma Lattes trazidos pelo download são excluídos.
 
 A fim de não deixar os arquivos usados neste processo, utilizando de espaço em disco no disco rígido do usuário, os mesmos são excluídos no final do algoritmo.
 

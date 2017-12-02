@@ -308,7 +308,7 @@ dir_destino = os.path.dirname(arquivo_lattes)
 print("Diretório de trabalho local: " + dir_destino)
 
 print("Iniciando download do arquivo na plataforma lattes. Processo demorado...")
-#urllib.request.urlretrieve(url, arquivo_lattes)
+urllib.request.urlretrieve(url, arquivo_lattes)
 print("Download concluído: " + arquivo_lattes)
 
 print("Descompactando o arquivo ZIP... ")
@@ -415,7 +415,9 @@ while i < len(nacionalidade_list):
     if aux_nacionalidade != "BRA":
         nacionalidade_chart.add(aux_nacionalidade_extenso, valor_nacionalidade)
     else:
-        print( "Número de pesquisadores Brasileiros cadastrados: " + valor_nacionalidade )
+        print()
+        print( "[!] Número de pesquisadores Brasileiros cadastrados: " + str(valor_nacionalidade) )
+        print()
     i = i + 1
 nacionalidade_chart.render_in_browser()
 
