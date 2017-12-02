@@ -84,6 +84,10 @@ Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href
 
 Foi criado um gráfico: "pesquisadores estrangeiros", excetuando a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados, a contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
 
+4. Os arquivos da plataforma Lattes trazidos, são excluídos.
+
+A fim de não deixar os arquivos usados neste processo, utilizando de espaço em disco no disco rígido do usuário, os mesmos são excluídos no final do algoritmo.
+
 # Considerações finais 
 
 
