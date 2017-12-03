@@ -113,6 +113,8 @@ ii) Quantidade de estrangeiros cadastrados na plataforma:
 iii) Nível de formação dos pesquisadores: 
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/formacao_pesquisadores.jpg" alt="Nível de formação">
 
+6.1 <b>Gráfico estático</b>
+
 iv) Mapa mundi - Quantidade de pesquisadores por país
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/mapa_mundi.jpg" alt="Mapa mundi">
 
