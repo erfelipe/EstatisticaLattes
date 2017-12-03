@@ -4,7 +4,7 @@ Trabalho para a disciplina Representações distribuídas de texto e modelagem d
 
 Professor: Renato Rocha - FGV  [<a href="http://lattes.cnpq.br/4726949697973381" target="_blank">lattes</a>] [<a href="https://github.com/rsouza" target="_blank">github</a>] 
 
-Aluno: Eduardo R Felipe - UFMG [<a href="http://lattes.cnpq.br/1010588591399870" target="_blank">lattes</a>] [<a href="https://github.com/erfelipe" target="_blank"> github</a>] 
+Aluno: Eduardo R Felipe - UFMG [<a href="http://lattes.cnpq.br/1010588591399870" target="_blank">lattes</a>] [<a href="https://github.com/erfelipe" target="_blank">github</a>] 
 
 # Considerações iniciais
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/lattes.jpg" alt="Lattes Público?">
@@ -86,7 +86,7 @@ No gráfico: "pesquisadores estrangeiros", foi retirada de forma proposital a co
 
 4. <b>Os arquivos da plataforma Lattes trazidos pelo download são excluídos.</b>
 
-A fim de não deixar os arquivos usados neste processo no computador do usuário, utilizando de espaço em disco no disco rígido, os mesmos são excluídos no final do algoritmo.
+A fim de não deixar os arquivos usados neste processo no computador do usuário, utilizando de espaço no disco rígido, os mesmos são excluídos no final do algoritmo.
 
 # Considerações finais 
 
