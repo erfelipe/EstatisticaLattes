@@ -87,7 +87,15 @@ A fim de não deixar os arquivos usados neste processo, utilizando de espaço em
 
 # Considerações finais 
 
+O projeto tinha a intenção de analisar mais informações, identificar aspectos regionais e explorar o grande número de campos informacionais disponíveis no cadastro do currículo, mas os mecanismos de bloqueio e a burocracia são entraves que precisam ser discutidos em uma plataforma que foi construída com recursos públicos e não permite uma interação maior para extração de dados para pesquisadores.
+
 
 
 # Referências
+
+
+
+
+
+
 
