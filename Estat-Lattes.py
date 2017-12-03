@@ -3,9 +3,11 @@ import urllib.request
 import os
 import zipfile
 import csv
-import pygal
 import lxml
 import unidecode
+import pygal
+import pygal_maps_world
+import datetime
 
 # lista de países para permitir a exibicao por extenso nos graficos
 paises_3digitos = {}
@@ -261,6 +263,193 @@ paises_3digitos["VNM"] = "Vietnã"
 paises_3digitos["ZMB"] = "Zâmbia"
 paises_3digitos["ZWE"] = "Zimbabué"
 
+# lista de equivalencia de siglas de países para compatibilizar com o grafico de mapa mundial
+paises_3digitos_para_2 = {}
+paises_3digitos_para_2["AND"] = "ad"
+paises_3digitos_para_2["ARE"] = "ae"
+paises_3digitos_para_2["AFG"] = "af"
+paises_3digitos_para_2["ALB"] = "al"
+paises_3digitos_para_2["ARM"] = "am"
+paises_3digitos_para_2["AGO"] = "ao"
+paises_3digitos_para_2["ATA"] = "aq"
+paises_3digitos_para_2["ARG"] = "ar"
+paises_3digitos_para_2["AUT"] = "at"
+paises_3digitos_para_2["AUS"] = "au"
+paises_3digitos_para_2["AZE"] = "az"
+paises_3digitos_para_2["BIH"] = "ba"
+paises_3digitos_para_2["BGD"] = "bd"
+paises_3digitos_para_2["BEL"] = "be"
+paises_3digitos_para_2["BFA"] = "bf"
+paises_3digitos_para_2["BGR"] = "bg"
+paises_3digitos_para_2["BHR"] = "bh"
+paises_3digitos_para_2["BDI"] = "bi"
+paises_3digitos_para_2["BEN"] = "bj"
+paises_3digitos_para_2["BRN"] = "bn"
+paises_3digitos_para_2["BOL"] = "bo"
+paises_3digitos_para_2["BRA"] = "br"
+paises_3digitos_para_2["BTN"] = "bt"
+paises_3digitos_para_2["BWA"] = "bw"
+paises_3digitos_para_2["BLR"] = "by"
+paises_3digitos_para_2["BLZ"] = "bz"
+paises_3digitos_para_2["CAN"] = "ca"
+paises_3digitos_para_2["COD"] = "cd"
+paises_3digitos_para_2["CAF"] = "cf"
+paises_3digitos_para_2["COG"] = "cg"
+paises_3digitos_para_2["CHE"] = "ch"
+paises_3digitos_para_2["CIV"] = "ci"
+paises_3digitos_para_2["CHL"] = "cl"
+paises_3digitos_para_2["CMR"] = "cm"
+paises_3digitos_para_2["CHN"] = "cn"
+paises_3digitos_para_2["COL"] = "co"
+paises_3digitos_para_2["CRI"] = "cr"
+paises_3digitos_para_2["CUB"] = "cu"
+paises_3digitos_para_2["CPV"] = "cv"
+paises_3digitos_para_2["CYP"] = "cy"
+paises_3digitos_para_2["CZE"] = "cz"
+paises_3digitos_para_2["DEU"] = "de"
+paises_3digitos_para_2["DJI"] = "dj"
+paises_3digitos_para_2["DNK"] = "dk"
+paises_3digitos_para_2["DOM"] = "do"
+paises_3digitos_para_2["DZA"] = "dz"
+paises_3digitos_para_2["ECU"] = "ec"
+paises_3digitos_para_2["EST"] = "ee"
+paises_3digitos_para_2["EGY"] = "eg"
+paises_3digitos_para_2["ESH"] = "eh"
+paises_3digitos_para_2["ERI"] = "er"
+paises_3digitos_para_2["ESP"] = "es"
+paises_3digitos_para_2["ETH"] = "et"
+paises_3digitos_para_2["FIN"] = "fi"
+paises_3digitos_para_2["FRA"] = "fr"
+paises_3digitos_para_2["GAB"] = "ga"
+paises_3digitos_para_2["GBR"] = "gb"
+paises_3digitos_para_2["GEO"] = "ge"
+paises_3digitos_para_2["GUF"] = "gf"
+paises_3digitos_para_2["GHA"] = "gh"
+paises_3digitos_para_2["GRL"] = "gl"
+paises_3digitos_para_2["GMB"] = "gm"
+paises_3digitos_para_2["GIN"] = "gn"
+paises_3digitos_para_2["GNQ"] = "gq"
+paises_3digitos_para_2["GRC"] = "gr"
+paises_3digitos_para_2["GTM"] = "gt"
+paises_3digitos_para_2["GUM"] = "gu"
+paises_3digitos_para_2["GNB"] = "gw"
+paises_3digitos_para_2["GUY"] = "gy"
+paises_3digitos_para_2["HKG"] = "hk"
+paises_3digitos_para_2["HND"] = "hn"
+paises_3digitos_para_2["HRV"] = "hr"
+paises_3digitos_para_2["HTI"] = "ht"
+paises_3digitos_para_2["HUN"] = "hu"
+paises_3digitos_para_2["IDN"] = "id"
+paises_3digitos_para_2["IRL"] = "ie"
+paises_3digitos_para_2["ISL"] = "il"
+paises_3digitos_para_2["IND"] = "in"
+paises_3digitos_para_2["IRQ"] = "iq"
+paises_3digitos_para_2["IRN"] = "ir"
+paises_3digitos_para_2["ISL"] = "is"
+paises_3digitos_para_2["ITA"] = "it"
+paises_3digitos_para_2["JAM"] = "jm"
+paises_3digitos_para_2["JOR"] = "jo"
+paises_3digitos_para_2["JPN"] = "jp"
+paises_3digitos_para_2["KEN"] = "ke"
+paises_3digitos_para_2["KGZ"] = "kg"
+paises_3digitos_para_2["KHM"] = "kh"
+paises_3digitos_para_2["PRK"] = "kp"
+paises_3digitos_para_2["KOR"] = "kr"
+paises_3digitos_para_2["KWT"] = "kw"
+paises_3digitos_para_2["KAZ"] = "kz"
+paises_3digitos_para_2["LAO"] = "la"
+paises_3digitos_para_2["LBN"] = "lb"
+paises_3digitos_para_2["LIE"] = "li"
+paises_3digitos_para_2["LKA"] = "lk"
+paises_3digitos_para_2["LBR"] = "lr"
+paises_3digitos_para_2["LSO"] = "ls"
+paises_3digitos_para_2["LTU"] = "lt"
+paises_3digitos_para_2["LUX"] = "lu"
+paises_3digitos_para_2["LVA"] = "lv"
+paises_3digitos_para_2["LBY"] = "ly"
+paises_3digitos_para_2["MAR"] = "ma"
+paises_3digitos_para_2["MCO"] = "mc"
+paises_3digitos_para_2["MDA"] = "md"
+paises_3digitos_para_2["MNE"] = "me"
+paises_3digitos_para_2["MDG"] = "mg"
+paises_3digitos_para_2["MKD"] = "mk"
+paises_3digitos_para_2["MLI"] = "ml"
+paises_3digitos_para_2["MMR"] = "mm"
+paises_3digitos_para_2["MNG"] = "mn"
+paises_3digitos_para_2["MAC"] = "mo"
+paises_3digitos_para_2["MRT"] = "mr"
+paises_3digitos_para_2["MLT"] = "mt"
+paises_3digitos_para_2["MUS"] = "mu"
+paises_3digitos_para_2["MDV"] = "mv"
+paises_3digitos_para_2["MWI"] = "mw"
+paises_3digitos_para_2["MEX"] = "mx"
+paises_3digitos_para_2["MYS"] = "my"
+paises_3digitos_para_2["MOZ"] = "mz"
+paises_3digitos_para_2["NAM"] = "na"
+paises_3digitos_para_2["NER"] = "ne"
+paises_3digitos_para_2["NGA"] = "ng"
+paises_3digitos_para_2["NIC"] = "ni"
+paises_3digitos_para_2["NLD"] = "nl"
+paises_3digitos_para_2["NOR"] = "no"
+paises_3digitos_para_2["NPL"] = "np"
+paises_3digitos_para_2["NZL"] = "nz"
+paises_3digitos_para_2["OMN"] = "om"
+paises_3digitos_para_2["PAN"] = "pa"
+paises_3digitos_para_2["PER"] = "pe"
+paises_3digitos_para_2["PNG"] = "pg"
+paises_3digitos_para_2["PHL"] = "ph"
+paises_3digitos_para_2["PAK"] = "pk"
+paises_3digitos_para_2["POL"] = "pl"
+paises_3digitos_para_2["PRI"] = "pr"
+paises_3digitos_para_2["PSE"] = "ps"
+paises_3digitos_para_2["PRT"] = "pt"
+paises_3digitos_para_2["PRY"] = "py"
+paises_3digitos_para_2["REU"] = "re"
+paises_3digitos_para_2["ROM"] = "ro"
+paises_3digitos_para_2["SRB"] = "rs"
+paises_3digitos_para_2["RUS"] = "ru"
+paises_3digitos_para_2["RWA"] = "rw"
+paises_3digitos_para_2["SAU"] = "sa"
+paises_3digitos_para_2["SYC"] = "sc"
+paises_3digitos_para_2["SDN"] = "sd"
+paises_3digitos_para_2["SWE"] = "se"
+paises_3digitos_para_2["SGP"] = "sg"
+paises_3digitos_para_2["SHN"] = "sh"
+paises_3digitos_para_2["SVN"] = "si"
+paises_3digitos_para_2["SVK"] = "sk"
+paises_3digitos_para_2["SLE"] = "sl"
+paises_3digitos_para_2["SMR"] = "sm"
+paises_3digitos_para_2["SEN"] = "sn"
+paises_3digitos_para_2["SOM"] = "so"
+paises_3digitos_para_2["SUR"] = "sr"
+paises_3digitos_para_2["STP"] = "st"
+paises_3digitos_para_2["SLV"] = "sv"
+paises_3digitos_para_2["SYR"] = "sy"
+paises_3digitos_para_2["SWZ"] = "sz"
+paises_3digitos_para_2["TCD"] = "td"
+paises_3digitos_para_2["TGO"] = "tg"
+paises_3digitos_para_2["THA"] = "th"
+paises_3digitos_para_2["TJK"] = "tj"
+paises_3digitos_para_2["TLS"] = "tl"
+paises_3digitos_para_2["TKM"] = "tm"
+paises_3digitos_para_2["TUN"] = "tn"
+paises_3digitos_para_2["TUR"] = "tr"
+paises_3digitos_para_2["TWN"] = "tw"
+paises_3digitos_para_2["TZA"] = "tz"
+paises_3digitos_para_2["UKR"] = "ua"
+paises_3digitos_para_2["UGA"] = "ug"
+paises_3digitos_para_2["USA"] = "us"
+paises_3digitos_para_2["URY"] = "uy"
+paises_3digitos_para_2["UZB"] = "uz"
+paises_3digitos_para_2["VAT"] = "va"
+paises_3digitos_para_2["VEN"] = "ve"
+paises_3digitos_para_2["VNM"] = "vn"
+paises_3digitos_para_2["YEM"] = "ye"
+paises_3digitos_para_2["MYT"] = "yt"
+paises_3digitos_para_2["ZAF"] = "za"
+paises_3digitos_para_2["ZMB"] = "zm"
+paises_3digitos_para_2["ZWE"] = "zw"
+
 # funcoes uteis para leitura os arquivos CSV
 def importa_csv_para_lista(arq):
     print("Importando o arquivo: " + arq + " para estrutura de dados em memória a fim de permitir análise.")
@@ -288,6 +477,24 @@ def remover_acentos(texto):
     unaccented_string = unidecode.unidecode(texto)
     return unaccented_string
 
+def sigla_para_mapa_mundi():
+    pVez = True
+    d = datetime.date.today()
+    mes = d.month
+    ano = d.year
+    resp = "'" + str(mes) + "/" + str(ano) + "'" + "," + " {"
+    for key, value in nacionalidade_dict.items():
+        chave = paises_3digitos_para_2.get(key)
+        if (chave is not None):
+            if (pVez):
+                resp = resp + '{}{}{}{} {}{}{}'.format( "'", chave, "'", ":", "int(", value, ")" )  + "\n"
+            else:
+                resp = resp + '{}{}{}{}{} {}{}{}'.format(",", "'", chave, "'", ":", "int(", value, ")" ) + "\n"
+
+        pVez = False
+    resp = resp + "}"
+    return resp
+
 # lista para receber o arquivo numero_identificador_lattes_zzzz.csv
 identificador_list_cvs = list()
 # dicionario para receber o arquivo tab_area_conhecimento_zzzz.csv
@@ -307,7 +514,7 @@ dir_destino = os.path.dirname(arquivo_lattes)
 print("Diretório de trabalho local: " + dir_destino)
 
 print("Iniciando download do arquivo na plataforma lattes. Processo demorado...")
-urllib.request.urlretrieve(url, arquivo_lattes)
+#urllib.request.urlretrieve(url, arquivo_lattes)
 print("Download concluído: " + arquivo_lattes)
 
 print("Descompactando o arquivo ZIP... ")
@@ -437,7 +644,7 @@ area_chart.render_in_browser()
 
 # gerar o grafico de nivel de formacao
 nivel_formacao_chart = pygal.HorizontalBar()
-nivel_formacao_chart.title =  "Nivel de formacao dos pesquisadores"
+nivel_formacao_chart.title = "Nivel de formacao dos pesquisadores"
 i = 0
 while i < len(nivel_formacao_list):
     aux_linha = nivel_formacao_list[i]
@@ -452,13 +659,186 @@ while i < len(nivel_formacao_list):
     i = i + 1
 nivel_formacao_chart.render_in_browser()
 
+# gerar o grafico mapa mundi de forma ESTÁTICA
+# porque o metodo add NAO aceita o retorno da funcao de geracao dinamica: sigla_para_mapa_mundi()
+# estou pesquisando como solucionar essa situacao
+#print( sigla_para_mapa_mundi() )
+print("Mapa gerado em Dez/2017")
+worldmap_chart = pygal.maps.world.World()
+worldmap_chart.title = ('Pesquisadores cadastrados na plataforma Lattes - por paises.')
+worldmap_chart.add(
+'12/2017', {'br': int(5129564)
+,'cz': int(57)
+,'be': int(315)
+,'cn': int(482)
+,'it': int(2383)
+,'cl': int(2019)
+,'jp': int(343)
+,'cu': int(2628)
+,'uy': int(1368)
+,'pt': int(5033)
+,'nl': int(431)
+,'co': int(9424)
+,'gw': int(1110)
+,'mz': int(2462)
+,'py': int(1212)
+,'tr': int(76)
+,'es': int(2865)
+,'cv': int(1218)
+,'ar': int(4411)
+,'de': int(1912)
+,'gb': int(420)
+,'za': int(59)
+,'fr': int(2424)
+,'pe': int(5879)
+,'tl': int(188)
+,'ao': int(1626)
+,'in': int(956)
+,'cr': int(298)
+,'ch': int(203)
+,'bg': int(72)
+,'bo': int(1336)
+,'nz': int(40)
+,'us': int(2585)
+,'ng': int(354)
+,'ci': int(46)
+,'ec': int(1001)
+,'ca': int(562)
+,'ke': int(47)
+,'mx': int(1238)
+,'ve': int(1290)
+,'ir': int(358)
+,'pk': int(1011)
+,'hn': int(177)
+,'st': int(251)
+,'et': int(104)
+,'sv': int(126)
+,'eg': int(213)
+,'tn': int(42)
+,'gt': int(136)
+,'no': int(73)
+,'dz': int(41)
+,'th': int(14)
+,'ga': int(20)
+,'id': int(27)
+,'np': int(17)
+,'hu': int(75)
+,'ly': int(17)
+,'bd': int(33)
+,'at': int(144)
+,'ie': int(92)
+,'cd': int(92)
+,'cm': int(170)
+,'gh': int(78)
+,'ni': int(134)
+,'bj': int(231)
+,'pa': int(151)
+,'uz': int(20)
+,'ua': int(105)
+,'tg': int(29)
+,'do': int(195)
+,'kr': int(210)
+,'pl': int(198)
+,'cg': int(49)
+,'ma': int(54)
+,'se': int(131)
+,'ru': int(390)
+,'lb': int(74)
+,'ht': int(231)
+,'fi': int(66)
+,'by': int(39)
+,'gr': int(128)
+,'dk': int(97)
+,'rs': int(49)
+,'au': int(223)
+,'jo': int(20)
+,'my': int(21)
+,'sd': int(36)
+,'sn': int(68)
+,'tm': int(1)
+,'zw': int(7)
+,'sy': int(60)
+,'si': int(26)
+,'lt': int(10)
+,'gf': int(3)
+,'sr': int(36)
+,'ph': int(20)
+,'bf': int(12)
+,'iq': int(27)
+,'sg': int(8)
+,'gn': int(8)
+,'al': int(7)
+,'hr': int(32)
+,'lu': int(10)
+,'gy': int(13)
+,'tz': int(26)
+,'ug': int(9)
+,'tw': int(61)
+,'mg': int(10)
+,'jm': int(25)
+,'bw': int(3)
+,'am': int(30)
+,'pr': int(18)
+,'hk': int(14)
+,'td': int(4)
+,'ee': int(8)
+,'lv': int(9)
+,'is': int(3)
+,'af': int(7)
+,'ne': int(8)
+,'va': int(4)
+,'na': int(6)
+,'sa': int(4)
+,'sk': int(30)
+,'ad': int(3)
+,'ge': int(9)
+,'mt': int(2)
+,'zm': int(9)
+,'lk': int(7)
+,'rw': int(9)
+,'mu': int(5)
+,'vn': int(16)
+,'mw': int(3)
+,'mk': int(8)
+,'kw': int(1)
+,'sl': int(2)
+,'bz': int(3)
+,'cy': int(4)
+,'lr': int(2)
+,'mr': int(4)
+,'ba': int(3)
+,'kz': int(5)
+,'az': int(3)
+,'mn': int(3)
+,'md': int(5)
+,'kp': int(1)
+,'ml': int(9)
+,'bt': int(3)
+,'ye': int(2)
+,'ae': int(1)
+,'mo': int(3)
+,'me': int(1)
+,'om': int(1)
+,'mm': int(1)
+,'la': int(3)
+,'aq': int(2)
+,'kh': int(1)
+,'gq': int(1)
+,'tj': int(1)
+})
+worldmap_chart.render_in_browser()
+
+#############
+# FECHAMENTO
+#############
+
 # excluir os arquivos de download no final do processo
 print("Excluindo o arquivo: " + arquivo_lattes )
-os.remove(arquivo_lattes)
+#os.remove(arquivo_lattes)
 print("Excluindo o arquivo: " + identificador_arq)
-os.remove(identificador_arq)
+#os.remove(identificador_arq)
 print("Excluindo o arquivo: " + area_arq)
-os.remove(area_arq)
+#os.remove(area_arq)
 print("Excluindo o arquivo: " + nivel_arq)
-os.remove(nivel_arq)
+#os.remove(nivel_arq)
 

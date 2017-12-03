@@ -45,7 +45,9 @@ onde zzzzzzzz possui informações sobre ano, mes e dia da geração do arquivo.
 
 Arquivos em formato CVS são arquivos texto sem formatação (negrito, itálico, etc...) com dados separados por alguma pontuação como ponto e vírgula ou somente vírgula. 
 
-1. O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, realiza-se o processo de descompactação e identificação dos arquivos CVS. Ou seja, ao executar o algoritmo, o arquivo mais recente publicado pela plataforma será analisado.
+1. <b>Download dos dados no Lattes.</b>
+
+O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, realiza-se o processo de descompactação e identificação dos arquivos CVS. Ou seja, ao executar o algoritmo, o arquivo mais recente publicado pela plataforma será analisado.
 
 Cada arquivo CVS possui a seguinte estrutura: 
 
@@ -53,14 +55,15 @@ Cada arquivo CVS possui a seguinte estrutura:
 NUMERO_IDENTIFICADOR;PAIS_NACIONALIDADE_ISO3;DATA_ATUALIZACAO;COD_AREA_CONHEC;COD_NIVEL_FORMACAO
 
  7739792697883557;BRA;29/09/2009 18:36:17;;2
+
  8871954517195536;BRA;14/10/2015 20:17:54;60400005;C
 
-tab_area_conhecimento_zzzzzzzz.cvs - neste arquivo há a tradução do código da área de conhecimento para três idiomas: Português, inglês e espanhol.
+<b>tab_area_conhecimento_zzzzzzzz.cvs</b> - neste arquivo há a tradução do código da área de conhecimento para três idiomas: Português, inglês e espanhol.
 COD_AREA_CONHEC;NOME_AREA_CONHEC;NOME_AREA_CONHEC_EN;NOME_AREA_CONHEC_ES
  60500000;Planejamento Urbano e Regional;Urban and Regional Planning;Planeamiento Urbano y Regional
  10100008;Matemática;Mathematics;Matemática
 
-tab_nivel_formacao_zzzzzzzz.csv - este arquivo apresenta a tradução do código do nível de formação para três idiomas: Português, inglês e espanhol. 
+<b>tab_nivel_formacao_zzzzzzzz.csv</b> - este arquivo apresenta a tradução do código do nível de formação para três idiomas: Português, inglês e espanhol. 
 COD_NIVEL_FORM;DSC_NIVEL_FORM;DSC_NIVEL_FORM_EN;DSC_NIVEL_FORM_ES
  Y;Outros;Others;Otro
  3;Mestrado;Master's;Maestria
@@ -70,17 +73,17 @@ O processamento ocorre no algoritmo em Python, considerando o arquivo numero_ide
 
 Os outros dois arquivos atuam na tradução dos códigos para uma identificação por extenso da área de conhecimento e do nível de formação. Estes rótulos serão usados na identificação de cada área/nível na apresentação dos gráficos.
 
-2. O algoritmo utiliza estruturas "dicionário" e "listas".
+2. <b>O algoritmo utiliza estruturas "dicionário" e "listas".</b>
 
 Para o tratamento de dados em memória a fim de processar as informações e permitir ordenações para uma melhor visualização são utilizadas estruturas de dados. Os comentários e comandos de impressão de tela no algoritmo pretendem ajudar no entendimento da lógica adotada.
 
-3. Geração de apresentação gráfica dos resultados.
+3. <b>Geração de apresentação gráfica dos resultados.</b>
 
 Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href="http://www.pygal.org/en/stable/" target="_blank">pyGal</a> que permite a apresentação em browser. O projeto ainda apresenta uma dificuldade na exibição de caracteres latinos (com acentuação) sendo necessário desconsiderar estes caracteres no algoritmo. Um gráfico muito interessante desta biblioteca exibe um mapa mundi com a possibilidade de marcar países e associar valores, mas a definição de dados não aceitou a geração dinâmica de dados, visto que a construção estática demanda a alteração manual dos valores e rótulos o que não vai ao encontro da dinâmica do algoritmo. 
 
 Foi criado um gráfico: "pesquisadores estrangeiros", excetuando a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados, a contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
 
-4. Os arquivos da plataforma Lattes trazidos pelo download são excluídos.
+4. <b>Os arquivos da plataforma Lattes trazidos pelo download são excluídos.</b>
 
 A fim de não deixar os arquivos usados neste processo, utilizando de espaço em disco no disco rígido do usuário, os mesmos são excluídos no final do algoritmo.
 
@@ -88,7 +91,7 @@ A fim de não deixar os arquivos usados neste processo, utilizando de espaço em
 
 O projeto tinha a intenção de analisar mais informações, identificar aspectos regionais e explorar o grande número de campos informacionais disponíveis no cadastro do currículo, mas os mecanismos de bloqueio e a burocracia são entraves que precisam ser discutidos em uma plataforma que foi construída com recursos públicos e não permite uma interação maior para extração de dados para pesquisadores.
 
-5. Código fonte
+5. <b>Código fonte</b>
 
 O algoritmo pode ser acessado por dois arquivos:
 
@@ -96,7 +99,7 @@ a) O arquivo <a href="https://github.com/erfelipe/EstatisticaLattes/blob/master/
 
 b) O arquivo <a href="https://github.com/erfelipe/EstatisticaLattes/blob/master/Estat-Lattes.py" target="_blank">Estat-Lattes.py</a> possui o código em uma versão tradicional para IDEs como PyCharm executarem. 
 
-6. Gráficos dinâmicos
+6. <b>Gráficos dinâmicos</b>
 
 Como resultado do processamento para consulta do usuário, são publicados os seguintes gráficos:
 
