@@ -86,7 +86,7 @@ No gráfico: "pesquisadores estrangeiros", foi retirada de forma proposital a co
 
 4. <b>Os arquivos da plataforma Lattes trazidos pelo download são excluídos.</b>
 
-A fim de não deixar os arquivos usados neste processo no computador do usuário, utilizando de espaço no disco rígido, os mesmos são excluídos no final do algoritmo.
+A fim de não deixar os arquivos usados neste processo no computador do usuário, utilizando espaço no disco rígido, os mesmos são excluídos no final do algoritmo.
 
 # Considerações finais 
 
