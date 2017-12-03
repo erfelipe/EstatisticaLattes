@@ -1,6 +1,6 @@
 # Estatistica Lattes
 
-Trabalho para a disciplina Representações distribuídas de texto e modelagem de tópicos na Universidade Federal de Minas Gerais - Programa de Pós-Graduação - Gestão & Organização do Conhecimento 
+Trabalho para a disciplina Representações distribuídas de texto e modelagem de tópicos na Universidade Federal de Minas Gerais - Programa de Pós-Graduação - Gestão & Organização do Conhecimento - 
 <a href="http://ppggoc.eci.ufmg.br" target="_blank">http://ppggoc.eci.ufmg.br</a>
 
 Professor: Renato Rocha - FGV  [<a href="http://lattes.cnpq.br/4726949697973381" target="_blank">lattes</a>] [<a href="https://github.com/rsouza" target="_blank">github</a>] 
