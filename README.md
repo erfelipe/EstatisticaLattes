@@ -128,5 +128,5 @@ b) <a href="http://www.pygal.org/en/stable/" target="_blank">www.pygal.org/en/st
 
 c) <a href="https://docs.python.org/2/tutorial/datastructures.html" target="_blank">docs.python.org/2/tutorial/datastructures.html</a> 
 
-d) <a href="https://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460" target="_blank">://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460</a>
+d) <a href="https://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460" target="_blank">www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460</a>
 
