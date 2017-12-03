@@ -122,8 +122,11 @@ iv) Mapa mundi - Quantidade de pesquisadores por país
 
 Vários sites foram importantes para a construção do código, destaco:
 
-a) <a href="https://stackoverflow.com" target="_blank">stackoverflow.com</a>
-b) <a href="http://www.pygal.org/en/stable/" target="_blank">www.pygal.org/en/stable/</a>
-c) <a href="https://docs.python.org/2/tutorial/datastructures.html" target="_blank">docs.python.org/2/tutorial/datastructures.html</a>
+a) <a href="https://stackoverflow.com" target="_blank">stackoverflow.com</a> 
+
+b) <a href="http://www.pygal.org/en/stable/" target="_blank">www.pygal.org/en/stable/</a> 
+
+c) <a href="https://docs.python.org/2/tutorial/datastructures.html" target="_blank">docs.python.org/2/tutorial/datastructures.html</a> 
+
 d) <a href="https://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460" target="_blank">://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460</a>
 

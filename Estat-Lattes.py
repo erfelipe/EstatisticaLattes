@@ -9,7 +9,7 @@ import pygal
 import pygal_maps_world
 import datetime
 
-# lista de países para permitir a exibicao por extenso nos graficos
+# dicionario de países para permitir a exibicao por extenso nos graficos
 paises_3digitos = {}
 paises_3digitos["AFG"] = "Afeganistão"
 paises_3digitos["ZAF"] = "África do Sul"
@@ -263,7 +263,7 @@ paises_3digitos["VNM"] = "Vietnã"
 paises_3digitos["ZMB"] = "Zâmbia"
 paises_3digitos["ZWE"] = "Zimbabué"
 
-# lista de equivalencia de siglas de países para compatibilizar com o grafico de mapa mundial
+# dicionario de equivalencia de siglas de países para compatibilizar com o grafico de mapa mundial
 paises_3digitos_para_2 = {}
 paises_3digitos_para_2["AND"] = "ad"
 paises_3digitos_para_2["ARE"] = "ae"
