@@ -36,7 +36,7 @@ Este trabalho foi desenvolvido com base em algoritmo e bibliotecas Python. Foram
 
 A análise foi limitada a utilizar os arquivos em formato textual (CVS) divulgados na plataforma Lattes denominados: ID dos Currículos Lattes. 
 
-No site da plataforma:  <a href="http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados" target="_blank">http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados</a> pode-se ter acesso a um arquivo compactado em formato <a href="https://pt.wikipedia.org/wiki/ZIP" target="_blank">ZIP</a> que por sua vez contém três arquivos textos ao ser descompactado: 
+No site da plataforma:  <a href="http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados" target="_blank">http://memoria.cnpq.br/web/portal-lattes/extracoes-de-dados</a> pode-se ter acesso a um arquivo compactado em formato <a href="https://pt.wikipedia.org/wiki/ZIP" target="_blank">ZIP</a> que por sua vez contém três arquivos textos a serem descompactados: 
 - numero_identificador_lattes_zzzzzzzz.cvs
 - tab_area_conhecimento_zzzzzzzz.cvs 
 - tab_nivel_formacao_zzzzzzzz.csv
@@ -47,11 +47,11 @@ Arquivos em formato CVS são arquivos texto sem formatação (negrito, itálico,
 
 1. <b>Download dos dados no Lattes.</b>
 
-O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, realiza-se o processo de descompactação e identificação dos arquivos CVS. Ou seja, ao executar o algoritmo, o arquivo mais recente publicado pela plataforma será analisado.
+O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, inicia-se o processo de descompactação e identificação dos arquivos CVS. Ou seja, ao executar o algoritmo, o arquivo mais recente publicado pela plataforma será analisado.
 
 Cada arquivo CVS possui a seguinte estrutura: 
 
-<b>numero_identificador_lattes_.cvs</b> - este é o maior e principal arquivo da distribuição.  Possui o ID do currículo lattes e três outras informações usadas neste trabalho: nacionalidade, a área do conhecimento e o nível de formação. Que pode ser visto conforme o cabeçalho do arquivo abaixo. Importante notar que diversos registros (linhas) não possuem todas as informações, como na primeira linha de dados do exemplo abaixo. 
+<b>numero_identificador_lattes_.cvs</b> - este é o maior e principal arquivo da distribuição.  Possui o ID do currículo lattes e três outras informações usadas neste trabalho: nacionalidade, a área do conhecimento e o nível de formação. Sua estrutura pode ser vista conforme o cabeçalho do arquivo abaixo. Importante notar que diversos registros (linhas) não possuem todas as informações, como na primeira linha de dados do exemplo a seguir. 
 NUMERO_IDENTIFICADOR;PAIS_NACIONALIDADE_ISO3;DATA_ATUALIZACAO;COD_AREA_CONHEC;COD_NIVEL_FORMACAO
 
  7739792697883557;BRA;29/09/2009 18:36:17;;2
@@ -79,14 +79,14 @@ Para o tratamento de dados em memória a fim de processar as informações e per
 
 3. <b>Geração de apresentação gráfica dos resultados.</b>
 
-Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href="http://www.pygal.org/en/stable/" target="_blank">pyGal</a> que permite a apresentação em browser. O projeto ainda apresenta uma dificuldade na exibição de caracteres latinos (com acentuação) sendo necessário desconsiderar estes caracteres no algoritmo. 
-Um gráfico muito interessante desta biblioteca exibe um mapa mundi com a possibilidade de marcar países e associar valores, mas a definição de dados não aceitou a geração dinâmica de dados. Neste exemplo o gráfico foi feito por valores resultantes da função mas construído manualmente. Estou pesquisando como solucionar essa situação. O código recebeu os devidos comentários para esclarecer essa exceção. 
+Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href="http://www.pygal.org/en/stable/" target="_blank">pyGal</a> que permite a apresentação em browser. A biblioteca apresenta uma dificuldade na exibição de caracteres latinos (com acentuação) sendo necessário desconsiderar estes caracteres no algoritmo. 
+Um gráfico muito interessante desta biblioteca exibe um mapa mundi com a possibilidade de marcar países e associar valores, mas a definição de dados não aceitou a geração dinâmica de dados. Neste exemplo o gráfico foi feito por valores resultantes da função mas construído manualmente. Estou pesquisando como solucionar essa situação. O código recebeu os devidos comentários para esclarecer esta exceção. 
 
-Foi criado um gráfico: "pesquisadores estrangeiros", excetuando a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados, a contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
+No gráfico: "pesquisadores estrangeiros", foi retirada de forma proposital a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados. A contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
 
 4. <b>Os arquivos da plataforma Lattes trazidos pelo download são excluídos.</b>
 
-A fim de não deixar os arquivos usados neste processo, utilizando de espaço em disco no disco rígido do usuário, os mesmos são excluídos no final do algoritmo.
+A fim de não deixar os arquivos usados neste processo no computador do usuário, utilizando de espaço em disco no disco rígido, os mesmos são excluídos no final do algoritmo.
 
 # Considerações finais 
 
