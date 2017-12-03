@@ -79,7 +79,8 @@ Para o tratamento de dados em memória a fim de processar as informações e per
 
 3. <b>Geração de apresentação gráfica dos resultados.</b>
 
-Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href="http://www.pygal.org/en/stable/" target="_blank">pyGal</a> que permite a apresentação em browser. O projeto ainda apresenta uma dificuldade na exibição de caracteres latinos (com acentuação) sendo necessário desconsiderar estes caracteres no algoritmo. Um gráfico muito interessante desta biblioteca exibe um mapa mundi com a possibilidade de marcar países e associar valores, mas a definição de dados não aceitou a geração dinâmica de dados, visto que a construção estática demanda a alteração manual dos valores e rótulos o que não vai ao encontro da dinâmica do algoritmo. 
+Para geração dos gráficos estatísticos foi usada a biblioteca Python <a href="http://www.pygal.org/en/stable/" target="_blank">pyGal</a> que permite a apresentação em browser. O projeto ainda apresenta uma dificuldade na exibição de caracteres latinos (com acentuação) sendo necessário desconsiderar estes caracteres no algoritmo. 
+Um gráfico muito interessante desta biblioteca exibe um mapa mundi com a possibilidade de marcar países e associar valores, mas a definição de dados não aceitou a geração dinâmica de dados. Neste exemplo o gráfico foi feito por valores resultantes da função mas construído manualmente. Estou pesquisando como solucionar essa situação. O código recebeu os devidos comentários para esclarecer essa exceção. 
 
 Foi criado um gráfico: "pesquisadores estrangeiros", excetuando a contagem dos pesquisadores Brasileiros, que naturalmente possuem um valor muito maior que a contagem dos demais cadastrados, a contagem dos Brasileiros será impressa textualmente. Essa medida foi adotada para que o gráfico não ficasse tão distorcido, dificultando a visualização dos demais pesquisadores de outros países cadastrados na plataforma.
 
@@ -111,6 +112,9 @@ ii) Quantidade de estrangeiros cadastrados na plataforma:
 
 iii) Nível de formação dos pesquisadores: 
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/formacao_pesquisadores.jpg" alt="Nível de formação">
+
+iv) Mapa mundi - Quantidade de pesquisadores por país
+<img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/mapa_mundi.jpg" alt="Mapa mundi">
 
 # Referências
 

@@ -514,7 +514,7 @@ dir_destino = os.path.dirname(arquivo_lattes)
 print("Diretório de trabalho local: " + dir_destino)
 
 print("Iniciando download do arquivo na plataforma lattes. Processo demorado...")
-#urllib.request.urlretrieve(url, arquivo_lattes)
+urllib.request.urlretrieve(url, arquivo_lattes)
 print("Download concluído: " + arquivo_lattes)
 
 print("Descompactando o arquivo ZIP... ")
@@ -834,11 +834,11 @@ worldmap_chart.render_in_browser()
 
 # excluir os arquivos de download no final do processo
 print("Excluindo o arquivo: " + arquivo_lattes )
-#os.remove(arquivo_lattes)
+os.remove(arquivo_lattes)
 print("Excluindo o arquivo: " + identificador_arq)
-#os.remove(identificador_arq)
+os.remove(identificador_arq)
 print("Excluindo o arquivo: " + area_arq)
-#os.remove(area_arq)
+os.remove(area_arq)
 print("Excluindo o arquivo: " + nivel_arq)
-#os.remove(nivel_arq)
+os.remove(nivel_arq)
 
