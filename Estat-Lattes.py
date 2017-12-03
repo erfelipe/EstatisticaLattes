@@ -5,7 +5,6 @@ import zipfile
 import csv
 import pygal
 import lxml
-import pygal_maps_world
 import unidecode
 
 # lista de países para permitir a exibicao por extenso nos graficos

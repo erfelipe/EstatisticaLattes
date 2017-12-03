@@ -45,27 +45,26 @@ onde zzzzzzzz possui informações sobre ano, mes e dia da geração do arquivo.
 
 Arquivos em formato CVS são arquivos texto sem formatação (negrito, itálico, etc...) com dados separados por alguma pontuação como ponto e vírgula ou somente vírgula. 
 
-1. O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, realiza-se o processo de descompactação e identificação dos arquivos CVS.
+1. O algoritmo realiza o download deste arquivo compactado para a máquina do usuário, realiza-se o processo de descompactação e identificação dos arquivos CVS. Ou seja, ao executar o algoritmo, o arquivo mais recente publicado pela plataforma será analisado.
 
 Cada arquivo CVS possui a seguinte estrutura: 
 
 <b>numero_identificador_lattes_.cvs</b> - este é o maior e principal arquivo da distribuição.  Possui o ID do currículo lattes e três outras informações usadas neste trabalho: nacionalidade, a área do conhecimento e o nível de formação. Que pode ser visto conforme o cabeçalho do arquivo abaixo. Importante notar que diversos registros (linhas) não possuem todas as informações, como na primeira linha de dados do exemplo abaixo. 
 NUMERO_IDENTIFICADOR;PAIS_NACIONALIDADE_ISO3;DATA_ATUALIZACAO;COD_AREA_CONHEC;COD_NIVEL_FORMACAO
 
-7739792697883557;BRA;29/09/2009 18:36:17;;2
-
-8871954517195536;BRA;14/10/2015 20:17:54;60400005;C
+ 7739792697883557;BRA;29/09/2009 18:36:17;;2
+ 8871954517195536;BRA;14/10/2015 20:17:54;60400005;C
 
 tab_area_conhecimento_zzzzzzzz.cvs - neste arquivo há a tradução do código da área de conhecimento para três idiomas: Português, inglês e espanhol.
 COD_AREA_CONHEC;NOME_AREA_CONHEC;NOME_AREA_CONHEC_EN;NOME_AREA_CONHEC_ES
-60500000;Planejamento Urbano e Regional;Urban and Regional Planning;Planeamiento Urbano y Regional
-10100008;Matemática;Mathematics;Matemática
+ 60500000;Planejamento Urbano e Regional;Urban and Regional Planning;Planeamiento Urbano y Regional
+ 10100008;Matemática;Mathematics;Matemática
 
 tab_nivel_formacao_zzzzzzzz.csv - este arquivo apresenta a tradução do código do nível de formação para três idiomas: Português, inglês e espanhol. 
 COD_NIVEL_FORM;DSC_NIVEL_FORM;DSC_NIVEL_FORM_EN;DSC_NIVEL_FORM_ES
-Y;Outros;Others;Otro
-3;Mestrado;Master's;Maestria
-4;Doutorado;Doctorate;Doctorado
+ Y;Outros;Others;Otro
+ 3;Mestrado;Master's;Maestria
+ 4;Doutorado;Doctorate;Doctorado
 
 O processamento ocorre no algoritmo em Python, considerando o arquivo numero_identificador_lattes como referência principal para a contagem estatística. Na medida que este arquivo possui todos os identificadores de currículos cadastrados, a contagem e agrupamento de dados é feito por meio de um laço de repetição na estrutura de dados referente a este arquivo.
 
@@ -89,13 +88,33 @@ A fim de não deixar os arquivos usados neste processo, utilizando de espaço em
 
 O projeto tinha a intenção de analisar mais informações, identificar aspectos regionais e explorar o grande número de campos informacionais disponíveis no cadastro do currículo, mas os mecanismos de bloqueio e a burocracia são entraves que precisam ser discutidos em uma plataforma que foi construída com recursos públicos e não permite uma interação maior para extração de dados para pesquisadores.
 
+5. Código fonte
 
+O algoritmo pode ser acessado por dois arquivos:
+
+a) O arquivo <a href="https://github.com/erfelipe/EstatisticaLattes/blob/master/Estat-Lattes.ipynb" target="_blank">Estat-Lattes.ipynb</a> permite executar o código pelo <a href="http://jupyter.org" target="_blank">Jupyter Notebook</a> 
+
+b) O arquivo <a href="https://github.com/erfelipe/EstatisticaLattes/blob/master/Estat-Lattes.py" target="_blank">Estat-Lattes.py</a> possui o código em uma versão tradicional para IDEs como PyCharm executarem. 
+
+6. Gráficos dinâmicos
+
+Como resultado do processamento para consulta do usuário, são publicados os seguintes gráficos:
+
+i) Área de atuação das pessoas cadastradas:
+<img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/area_atuacao.jpg" alt="Atuação">
+
+ii) Quantidade de estrangeiros cadastrados na plataforma:
+<img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/estrangeiros.jpg" alt="Estrangeiros">
+
+iii) Nível de formação dos pesquisadores: 
+<img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/formacao_pesquisadores.jpg" alt="Nível de formação">
 
 # Referências
 
+Vários sites foram importantes para a construção do código, destaco:
 
-
-
-
-
+a) <a href="https://stackoverflow.com" target="_blank">stackoverflow.com</a>
+b) <a href="http://www.pygal.org/en/stable/" target="_blank">www.pygal.org/en/stable/</a>
+c) <a href="https://docs.python.org/2/tutorial/datastructures.html" target="_blank">docs.python.org/2/tutorial/datastructures.html</a>
+d) <a href="https://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460" target="_blank">://www.devmedia.com.br/como-trabalhar-com-listas-em-python/37460</a>
 
