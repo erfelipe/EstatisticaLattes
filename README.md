@@ -3,9 +3,11 @@
 Trabalho para a disciplina Representações distribuídas de texto e modelagem de tópicos na Universidade Federal de Minas Gerais - Programa de Pós-Graduação - Gestão & Organização do Conhecimento - 
 <a href="http://ppggoc.eci.ufmg.br" target="_blank">http://ppggoc.eci.ufmg.br</a>
 
-Professor: Renato Rocha - FGV  [<a href="http://lattes.cnpq.br/4726949697973381" target="_blank">lattes</a>] [<a href="https://github.com/rsouza" target="_blank">github</a>] 
+Professor: Dr. Renato Rocha - FGV  [<a href="http://lattes.cnpq.br/4726949697973381" target="_blank">lattes</a>] [<a href="https://github.com/rsouza" target="_blank">github</a>] 
 
 Aluno: Eduardo R Felipe - UFMG [<a href="http://lattes.cnpq.br/1010588591399870" target="_blank">lattes</a>] [<a href="https://github.com/erfelipe" target="_blank">github</a>] 
+
+Orientador: Prof. Dr. Maurício Barcellos [<a href="http://lattes.cnpq.br/5218069708058487" target="_blank"> lattes</a>] [<a href="http://mba.eci.ufmg.br/" target="_blank">site</a>]
 
 # Considerações iniciais
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/lattes.jpg" alt="Lattes Público?">
