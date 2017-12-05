@@ -7,7 +7,7 @@ Professor: Dr. Renato Rocha - FGV  [<a href="http://lattes.cnpq.br/4726949697973
 
 Aluno: Eduardo R Felipe - UFMG [<a href="http://lattes.cnpq.br/1010588591399870" target="_blank">lattes</a>] [<a href="https://github.com/erfelipe" target="_blank">github</a>] 
 
-Orientador: Prof. Dr. Maurício Barcellos [<a href="http://lattes.cnpq.br/5218069708058487" target="_blank"> lattes</a>] [<a href="http://mba.eci.ufmg.br/" target="_blank">site</a>]
+Orientador: Prof. Dr. Maurício Barcellos [<a href="http://lattes.cnpq.br/5218069708058487" target="_blank">lattes</a>] [<a href="http://mba.eci.ufmg.br/" target="_blank">site</a>]
 
 # Considerações iniciais
 <img src="https://github.com/erfelipe/EstatisticaLattes/blob/master/img/lattes.jpg" alt="Lattes Público?">
